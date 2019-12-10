@@ -2365,15 +2365,18 @@ ul {
   height: 880px;
   position: relative;
   overflow: hidden;
-  background-image: url(../img/banner_bg.png);
+ background-image: url('../img/banner_bg.png');
   background-repeat: no-repeat;
   background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-position: center;
   z-index: 1;
 }
 
 @media (max-width: 575px) {
- 
+  .banner_part {
     height: 650px;
     background-color: #f0eed4;
   }
@@ -5560,4 +5563,3 @@ h6 {
   margin-bottom: 10px;
 }
 
-/*# sourceMappingURL=../css/style.map */
