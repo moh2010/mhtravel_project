@@ -14,7 +14,7 @@
                     </div>
                     <div class="col-lg-6 col-sm-12 col-md-6">
                         <div class="sub_menu_social_icon">
-                            <a href="#"><i class="flaticon-facebook"></i></a>
+                            <a href="https://www.facebook.com/ntinternational/"><i class="flaticon-facebook"></i></a>
                             <a href="#"><i class="flaticon-twitter"></i></a>
                             <a href="#"><i class="flaticon-skype"></i></a>
                             <a href="#"><i class="flaticon-instagram"></i></a>
@@ -46,22 +46,22 @@
                                         <a class="nav-link" href="{% url 'about' %}">About</a>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="destination.html" id="navbarDropdown_1"
+                                        <a class="nav-link dropdown-toggle" href="{% url 'destination' %}" id="navbarDropdown_1"
                                             role="button" data-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false">
                                             Destination
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                            <a class="dropdown-item" href="destination.html">Turkey</a>
-                                            <a class="dropdown-item" href="destination.html">Malysia</a>
-                                            <a class="dropdown-item" href="destination.html">Maroco</a>
+                                            <a class="dropdown-item" href="{% url 'destination' %}">Turkey</a>
+                                            <a class="dropdown-item" href="{% url 'destination' %}">Malysia</a>
+                                            <a class="dropdown-item" href="{% url 'destination' %}">Maroco</a>
                                         </div>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="packages.html">packages</a>
+                                        <a class="nav-link" href="{% url 'package' %}">packages</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="contact.html">Contact</a>
+                                        <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                                     </li>
                                 </ul>
                             </div>
