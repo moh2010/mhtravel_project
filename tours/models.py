@@ -39,7 +39,7 @@ class City(models.Model):
 
 def program_directory_path(instance, filename):
      
-    return '{0}_img/{1}'.format(instance.category, filename)
+    return '{0}_img/{1}'.format(instance.title, filename)
 
 class Program(models.Model):
     category = models.ForeignKey(Category, related_name='cat_programs', on_delete=models.CASCADE)
@@ -49,9 +49,10 @@ class Program(models.Model):
     arrival_date = models.DateField()
     departure_date = models.DateField()
     description = models.TextField()
-    price_adt = models.DecimalField(max_digits=6, decimal_places=2)
-    price_chd = models.DecimalField(max_digits=6, decimal_places=2)
-    price_inf = models.DecimalField(max_digits=6, decimal_places=2)
+    price_adt = models.DecimalField(max_digits=12, decimal_places=2)
+    price_chd_one = models.DecimalField(max_digits=10, decimal_places=2)
+    price_chd_two = models.DecimalField(max_digits=10, decimal_places=2)
+    price_inf = models.DecimalField(max_digits=10, decimal_places=2)
     hotel_name = models.CharField(max_length=200)
     district = models.CharField(max_length=200)
     stars = models.IntegerField()
