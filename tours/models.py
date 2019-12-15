@@ -72,7 +72,7 @@ class Program(models.Model):
     
     
     def __str__(self):
-        return self.title 
+        return self.title +" "+self.hotel_name+" "+str(self.arrival_date) 
 
     class Meta:
         ordering = ('arrival_date',)
