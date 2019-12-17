@@ -1,8 +1,13 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Program, Category, Destination, City
+
 
 def index(request):
-    return render(request, 'tours/index.html')
+    programs = Program.objects.all()
+    context = {
+       'programs': programs 
+    }
+    return render(request, 'tours/index.html', context)
 
 def about(request):
     return render(request, 'tours/about.html')
