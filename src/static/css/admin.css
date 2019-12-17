@@ -22,7 +22,13 @@ div.breadcrumbs {
 div.breadcrumbs a{
     color: #0c3e72;
 }
-.module h2, .module caption, .inline-group h2 a.section:link, a.section:visited{
+
+
+.module h2, .module caption, .inline-group h2 {
     background: #eaefff;
     color: #0c3e72;
-}    
+} 
+.module h2, .module caption, .inline-group h2 a.section:link, a.section:visited {
+    color: #0c3e72;    
+}
+
