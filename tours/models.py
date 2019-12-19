@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Category(models.Model):
     title = models.CharField(max_length=200,db_index=True)
@@ -73,6 +74,10 @@ class Program(models.Model):
     
     def __str__(self):
         return self.title +" "+self.hotel_name+" "+str(self.arrival_date) 
+
+    def get_absolute_url(self):
+            return reverse('tours:tour_detail', args=[self.id])
+                            
 
     class Meta:
         ordering = ('arrival_date',)
