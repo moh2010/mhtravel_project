@@ -1,0 +1,44 @@
+I register this model in backend. But now when i click on create invoice in admin the invoice should be auto filled. When i again click on create new invoice in admin, the invoice_number should be incremented by one and should be auto field.
+
+Ex for Invoice number MAG0001, MAG0002, MAG0003 etc and this should be auto field in admin when i click on create new invoice.
+===========================================================
+
+
+def increment_invoice_number():
+    last_invoice = Invoice.objects.all().order_by('id').last()
+    if not last_invoice:
+         return 'MAG0001'
+    invoice_no = last_invoice.invoice_no
+    invoice_int = int(invoice_no.split('MAG')[-1])
+    new_invoice_int = invoice_int + 1
+    new_invoice_no = 'MAG' + str(new_invoice_int)
+    return new_invoice_no
+
+or -------------------------------
+
+def increment_invoice_number():
+    last_invoice = Invoice.objects.all().order_by('id').last()
+    if not last_invoice:
+        return 'MAG0001'
+    invoice_no = last_invoice.invoice_no
+    new_invoice_no = str(int(invoice_no[4:]) + 1)
+    new_invoice_no = invoice_no[0:-(len(new_invoice_no))] + new_invoice_no
+    return new_invoice_no
+
+
+or ------------------------
+
+def increment_invoice_number():
+    last_invoice = Invoice.objects.all().order_by('id').last()
+    if not last_invoice:
+        return 'MAG0001'
+    invoice_no = last_invoice.invoice_no
+    invoice_int = int(invoice_no.split('MAG')[-1])
+    width = 4
+    new_invoice_int = invoice_int + 1
+    formatted = (width - len(str(new_invoice_int))) * "0" + str(new_invoice_int)
+    new_invoice_no = 'MAG' + str(formatted)
+    return new_invoice_no  
+=============================================================================
+class Invoice(models.Model):
+    invoice_no = models.CharField(max_length = 500, default = increment_invoice_number, null = True, blank = True)
