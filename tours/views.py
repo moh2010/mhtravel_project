@@ -1,12 +1,16 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Program, Category, Destination, City
+from django.core.paginator import EmptyPage, Paginator, PageNotAnInteger
 
 
 def index(request):
     programs = Program.objects.all()
     destinations = Destination.objects.all()
+    paginator = Paginator(programs, 4)
+    page = request.GET.get('page')
+    paged_programs = paginator.get_page(page)
     context = {
-       'programs': programs ,
+       'programs': paged_programs ,
        'destinations': destinations
     }
     return render(request, 'tours/index.html', context)
