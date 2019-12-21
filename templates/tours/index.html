@@ -185,9 +185,13 @@
                         <p>No RoundTrip Available</p>
                     </div>
                 {% endif %}
-                <a href="#" class="btn_1 text-cnter">Discover more</a>
+                         
             </div>
+            <div class="section_tittle text-center">
+                <a href="#" class="btn_1 text-cnter">Discover more</a> 
+            </div>   
         </div>
+
     </section>
     <!--top place end-->
     <div class="container">
@@ -299,19 +303,19 @@
     <!--::industries end::-->
     <div class="container">
         <nav aria-label="...">
-            {% if htls.has_other_pages %}
+            {% if programs.has_other_pages %}
                 <ul class="pagination">
-                    {% if htls.has_previous %}
+                    {% if programs.has_previous %}
                         <li class="page-item">
-                            <a class="page-link" href="?page={{ htls.pervious_page_number }}">Previous</a>
+                            <a class="page-link" href="?page={{ programs.pervious_page_number }}">Previous</a>
                         </li>
                     {% else %}
                         <li class="page-item disabled">    
                             <a class="page-link">Previous</a>   
                         </li>
                     {% endif %}
-                    {% for g in htls.paginator.page_range %}
-                        {% if htls.number == g %}
+                    {% for g in programs.paginator.page_range %}
+                        {% if programs.number == g %}
                             <li class="page-item active">
                                 <a class="page-link">{{ g }}</a>
                             </li>
@@ -321,9 +325,9 @@
                             </li>
                         {% endif %}       
                     {% endfor %}
-                    {% if htls.has_next %}
+                    {% if programs.has_next %}
                         <li class="page-item">
-                            <a class="page-link" href="?page={{ htls.next_page_number }}">Next</a>
+                            <a class="page-link" href="?page={{ programs.next_page_number }}">Next</a>
                         </li>
                     {% else %}
                         <li class="page-item disabled">    

@@ -4,7 +4,7 @@ from django.core.paginator import EmptyPage, Paginator, PageNotAnInteger
 
 
 def index(request):
-    programs = Program.objects.all()
+    programs = Program.objects.order_by('arrival_date').filter(available_front_page=True)
     destinations = Destination.objects.all()
     paginator = Paginator(programs, 4)
     page = request.GET.get('page')
@@ -24,8 +24,8 @@ def destination(request):
 def package(request):
     return render (request, 'tours/packages.html')
 
-def tour_detail(request, id):
-    tour = get_object_or_404(Program, id=id)
+def tour_detail(request, tour_id):
+    tour = get_object_or_404(Program, id=tour_id)
     context = {
        'tour': tour
     }
