@@ -46,7 +46,7 @@
                                                 <select class="nc_select">
                                                     <option selected>Choose destination</option>
                                                     {% for dest in destinations %}
-                                                    <option value="1">{{ dest.title }}</option>
+                                                        <option href="{% url "tours:destination" %}">{{ dest.title }}</option>
                                                     {% endfor %}
                                                 </select>
                                             </div>

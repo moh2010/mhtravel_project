@@ -26,6 +26,9 @@ class Destination(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('tours:program_list_by_destination', args=[self.slug])
+
 class City(models.Model):
     title = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, unique=True)

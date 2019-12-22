@@ -46,14 +46,15 @@
                                         <a class="nav-link" href="{% url "tours:about" %}">About</a>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="{% url "tours:destination" %}" id="navbarDropdown_1"
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_1"
                                             role="button" data-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false">
                                             Destination
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                            {% for dest in destinations %}
-                                                <a class="dropdown-item" href="{% url "tours:destination" %}">{{ dest.title }}</a>
+                                            {% for c in destinations %} 
+                                            {% if destination.slug == c.slug %}{% endif %}
+                                                    <a class="dropdown-item" href="{{ c.get_absolute_url }}">{{ c.title }}</a>
                                             {% endfor %}
                                         </div>
                                     </li>

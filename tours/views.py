@@ -21,6 +21,16 @@ def about(request):
 def destination(request):
     return render (request, 'tours/destination.html')
 
+def per_destination(request, des_slug=None):
+    if des_slug:
+        destination = get_object_or_404(Destination, slug=des_slug)
+        program = Program.objects.filter(destination=destination)
+        context = {
+        'destination': destination ,
+        'program': program
+        }    
+    return render (request, 'tours/per_destination.html', context)
+
 def package(request):
     return render (request, 'tours/packages.html')
 
