@@ -31,36 +31,48 @@
     <section class="tour_details_content section_padding">
         <div class="container">    
              <div class="row mb-5 thumbs">
-                <div class="col-md-2">
-                    <a href="{{ tour.image_1.url }}" data-lightbox="home-images">
-                        <img src="{{ tour.image_1.url }}" alt="" class="img-fluid">
-                    </a>
-                </div>
-                <div class="col-md-2">
-                    <a href="{{ tour.image_2.url }}" data-lightbox="home-images">
-                        <img src="{{ tour.image_2.url }}" alt="" class="img-fluid">
-                    </a>
-                </div>
-                <div class="col-md-2">
-                    <a href="{{ tour.image_3.url }}" data-lightbox="home-images">
-                        <img src="{{ tour.image_3.url }}" alt="" class="img-fluid">
-                    </a>
-                </div>
-                <div class="col-md-2">
-                    <a href="{{ tour.image_4.url }}" data-lightbox="home-images">
-                     <img src="{{ tour.image_4.url }}" alt="" class="img-fluid">
-                    </a>
-                </div>
-                <div class="col-md-2">
-                    <a href="{{ tour.image_5.url }}" data-lightbox="home-images">
-                        <img src="{{ tour.image_5.url }}" alt="" class="img-fluid">
-                    </a>
-                </div>
-                <div class="col-md-2">
-                    <a href="{{ tour.image_6.url }}" data-lightbox="home-images">
-                     <img src="{{ tour.image_6.url }}" alt="" class="img-fluid">
-                    </a>
-                </div>
+                {% if tour.image_1 %}
+                    <div class="col-md-2">
+                        <a href="{{ tour.image_1.url }}" data-lightbox="home-images">
+                            <img src="{{ tour.image_1.url }}" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                {% endif %}
+                {% if tour.image_2 %}
+                    <div class="col-md-2">
+                        <a href="{{ tour.image_2.url }}" data-lightbox="home-images">
+                            <img src="{{ tour.image_2.url }}" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                {% endif %}
+                {% if tour.image_3 %}
+                    <div class="col-md-2">
+                        <a href="{{ tour.image_3.url }}" data-lightbox="home-images">
+                            <img src="{{ tour.image_3.url }}" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                {% endif %}
+                {% if tour.image_4 %}
+                    <div class="col-md-2">
+                        <a href="{{ tour.image_4.url }}" data-lightbox="home-images">
+                        <img src="{{ tour.image_4.url }}" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                {% endif %}
+                {% if tour.image_5 %}
+                    <div class="col-md-2">
+                        <a href="{{ tour.image_5.url }}" data-lightbox="home-images">
+                            <img src="{{ tour.image_5.url }}" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                {% endif %}
+                {% if tour.image_6 %}
+                    <div class="col-md-2">
+                        <a href="{{ tour.image_6.url }}" data-lightbox="home-images">
+                        <img src="{{ tour.image_6.url }}" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </section>

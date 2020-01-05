@@ -32,7 +32,13 @@ def per_destination(request, des_slug=None):
     return render (request, 'tours/per_destination.html', context)
 
 def package(request):
-    return render (request, 'tours/packages.html')
+    programz = Program.objects.order_by('arrival_date').filter(available_programs_page=True)
+    destinations = Destination.objects.all()
+    context = {
+       'programz': programz ,
+       'destinations': destinations
+    }
+    return render (request, 'tours/packages.html', context)
 
 def tour_detail(request, tour_id):
     tour = get_object_or_404(Program, id=tour_id)
