@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Program, Category, Destination, City
 from django.core.paginator import EmptyPage, Paginator, PageNotAnInteger
-
+from .choices import persons_choices
 
 def index(request):
     programs = Program.objects.order_by('arrival_date').filter(available_front_page=True)
@@ -11,7 +11,8 @@ def index(request):
     paged_programs = paginator.get_page(page)
     context = {
        'programs': paged_programs ,
-       'destinations': destinations
+       'destinations': destinations,
+       'persons_choices': persons_choices
     }
     return render(request, 'tours/index.html', context)
 
@@ -55,7 +56,8 @@ def search(request):
     paged_programs = paginator.get_page(page)
     context = {
        'programs': paged_programs ,
-       'destinations': destinations
+       'destinations': destinations,
+       'persons_choices':persons_choices
     }
     return render(request, 'tours/search.html', context)
 
