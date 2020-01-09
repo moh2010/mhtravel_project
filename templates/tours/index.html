@@ -46,7 +46,8 @@
                                                 <select class="nc_select">
                                                     <option selected>Choose destination</option>
                                                     {% for dest in destinations %}
-                                                        <option href="{% url "tours:destination" %}">{{ dest.title }}</option>
+                                                        {% if destination.slug == dest.slug %}{% endif %}
+                                                            <option value="{{ dest }}" href="{{ dest.get_absolute_url }}">{{ dest.title }}</option>
                                                     {% endfor %}
                                                 </select>
                                             </div>
