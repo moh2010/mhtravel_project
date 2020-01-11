@@ -49,15 +49,17 @@ def tour_detail(request, tour_id):
     return render (request, 'tours/tour_details.html', context)    
 
 def search(request):
-    programs = Program.objects.order_by('arrival_date').filter(available_front_page=True)
-    destinations = Destination.objects.all()
-    paginator = Paginator(programs, 4)
-    page = request.GET.get('page')
-    paged_programs = paginator.get_page(page)
+    queryset_list = Program.objects.order_by('arrival_date')
+    destinations  = Destination.objects.all()
+   
+    if 'land' in request.GET:
+        land = request.GET['land']
+        if land :
+            queryset_list = queryset_list.filter(destination__title__iexact=land)
     context = {
-       'programs': paged_programs ,
-       'destinations': destinations,
-       'persons_choices':persons_choices
+       'programs': queryset_list ,
+       'destinations': destinations
+       
     }
     return render(request, 'tours/search.html', context)
 
