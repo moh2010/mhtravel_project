@@ -57,8 +57,9 @@ def search(request):
         if land :
             queryset_list = queryset_list.filter(destination__title__iexact=land)
     context = {
-       'programs': queryset_list ,
-       'destinations': destinations
+       'programs': queryset_list,
+       'destinations': destinations,
+       'persons_choices': persons_choices
        
     }
     return render(request, 'tours/search.html', context)
