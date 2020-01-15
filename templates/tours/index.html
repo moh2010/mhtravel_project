@@ -52,6 +52,7 @@
                                                 </select>
                                             </div>
                                             <div class="form_colum">
+                                                
                                                 <input name="arrival_date" id="datepicker_5" placeholder="Check in date">
                                             </div>
                                             <div class="form_colum">
@@ -378,5 +379,13 @@
         </div>
     </section>
     <!--::industries end::--> 
+    <script>
+        $(function () {
+            $("#id_date").datepicker({
+                format:'dd/mm/yyyy',
+            });
+        });
+    </script>   
+
 {% endblock  %}
  

@@ -52,10 +52,17 @@ def search(request):
     queryset_list = Program.objects.order_by('arrival_date')
     destinations  = Destination.objects.all()
    
+    # destination  
     if 'land' in request.GET:
         land = request.GET['land']
         if land :
             queryset_list = queryset_list.filter(destination__title__iexact=land)
+
+    # arrival Date
+    if 'arrival_date' in request.GET:
+        arrival_date = request.GET['arrival_date']
+        if arrival_date :
+            queryset_list = queryset_list.filter(arrival_date__lte=arrival_date)        
     context = {
        'programs': queryset_list,
        'destinations': destinations,

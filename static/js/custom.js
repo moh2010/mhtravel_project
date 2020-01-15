@@ -71,14 +71,15 @@
     nc_select.niceSelect();
   }
 
-  $('#datepicker_1').datepicker();
-  $('#datepicker_2').datepicker();  
-  $('#datepicker_3').datepicker();
-  $('#datepicker_4').datepicker();  
-  $('#datepicker_5').datepicker();
-  $('#datepicker_6').datepicker();
-
-  $('.gallery_img').magnificPopup({
+  
+  $("#datepicker_5").datepicker({
+    format: 'yyyy-mm-dd'
+  });
+  $("#datepicker_6").datepicker({
+    format: 'yyyy-mm-dd'
+  });
+  
+    $('.gallery_img').magnificPopup({
     type: 'image',
     gallery:{
       enabled:true
