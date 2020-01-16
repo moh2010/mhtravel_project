@@ -73,10 +73,14 @@
 
   
   $("#datepicker_5").datepicker({
-    format: 'yyyy-mm-dd'
+    dateFormat: 'yy-mm-dd',
+    changeMonth: true,
+    changeYear: true,
   });
   $("#datepicker_6").datepicker({
-    format: 'yyyy-mm-dd'
+    dateFormat: 'yy-mm-dd',
+    changeMonth: true,
+    changeYear: true,
   });
   
     $('.gallery_img').magnificPopup({

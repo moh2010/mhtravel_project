@@ -71,12 +71,17 @@
     nc_select.niceSelect();
   }
 
-  $('#datepicker_1').datepicker();
-  $('#datepicker_2').datepicker();
-  $('#datepicker_3').datepicker();
-  $('#datepicker_4').datepicker();
-  $('#datepicker_5').datepicker();
-  $('#datepicker_6').datepicker();
+  
+  $("#datepicker_5").datepicker({
+    dateFormat: 'yy-mm-dd',
+    changeMonth: true,
+    changeYear: true,
+  });
+  $("#datepicker_6").datepicker({
+    dateFormat: 'yy-mm-dd',
+    changeMonth: true,
+    changeYear: true,
+  });
   
   
   $('.gallery_img').magnificPopup({
