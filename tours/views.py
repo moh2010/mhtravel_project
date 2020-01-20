@@ -69,7 +69,7 @@ def search(request):
        'persons_choices': persons_choices
        
     }
-    return render(request, 'tours/search.html', context)
+    return render(request, 'tours/index.html', context)
 
 
 
