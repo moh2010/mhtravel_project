@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MH Travel</title>
+     <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+  <!-- Lightbox core CSS -->
+  <link rel="stylesheet" href="{% static 'css/lightbox.css' %}">
+
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+</head>
+<body>
+    <!-- Nav Bar -->
+    {% include 'partials/_navbar.html' %}
+
+   {% block content%}
+   {% endblock %} 
+
+ <!-- Footer -->
+    {% include 'partials/_footer.html' %}
+    
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'js/jquery.js' %}"></script>
+  <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+  <!-- Lightbox core JavaScript -->
+  <script src="{% static 'js/lightbox.js' %}"></script>
+  <!-- Custom styles for this template -->
+  <script src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>
