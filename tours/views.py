@@ -3,14 +3,21 @@ from .models import Program, Category, Destination, City
 from django.core.paginator import EmptyPage, Paginator, PageNotAnInteger
 from .choices import persons_choices
 
-def index(request):
+def index(request, category_slug=None):
+    category = None
+    categories = Category.objects.all()
     programs = Program.objects.order_by('arrival_date').filter(available_front_page=True)
+    if category_slug:
+        category = get_object_or_404(Category, slug=category_slug)
+        programs = programs.filter(category=category) 
     destinations = Destination.objects.all()
-    paginator = Paginator(programs, 4)
+    paginator = Paginator(programs, 3)
     page = request.GET.get('page')
     paged_programs = paginator.get_page(page)
     context = {
-       'programs': paged_programs ,
+       'category': category,
+       'categories':categories,
+       'programs': paged_programs,
        'destinations': destinations,
        'persons_choices': persons_choices
     }
@@ -41,8 +48,8 @@ def package(request):
     }
     return render (request, 'tours/packages.html', context)
 
-def tour_detail(request, tour_id):
-    tour = get_object_or_404(Program, id=tour_id)
+def tour_detail(request, tour_id, slug):
+    tour = get_object_or_404(Program, id=tour_id, slug=slug, available_programs_page=True)
     context = {
        'tour': tour
     }

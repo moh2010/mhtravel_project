@@ -13,6 +13,8 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('tours:index_list', args=[self.slug])
 
 class Destination(models.Model):
     title = models.CharField(max_length=200,db_index=True)
@@ -50,6 +52,7 @@ class Program(models.Model):
     destination = models.ForeignKey(Destination, related_name='des_programs', on_delete=models.CASCADE)
     city = models.ForeignKey(City, related_name='cit_programs', on_delete=models.CASCADE)
     title = models.CharField(max_length=300, db_index=True)
+    slug = models.SlugField(max_length=200, db_index=True)
     arrival_date = models.DateField()
     departure_date = models.DateField()
     description = models.TextField()
@@ -79,7 +82,7 @@ class Program(models.Model):
         return self.title +" "+self.hotel_name+" "+str(self.arrival_date) 
 
     def get_absolute_url(self):
-            return reverse('tours:tour_detail', args=[self.id])
+            return reverse('tours:tour_detail', args=[self.id, self.slug])
                             
 
     class Meta:
