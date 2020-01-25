@@ -3,7 +3,7 @@ from .models import Program, Category, Destination, City
 from django.core.paginator import EmptyPage, Paginator, PageNotAnInteger
 from .choices import persons_choices
 
-def index(request, category_slug=None):
+""" def index(request, category_slug=None):
     category = None
     categories = Category.objects.all()
     programs = Program.objects.order_by('arrival_date').filter(available_front_page=True)
@@ -21,6 +21,23 @@ def index(request, category_slug=None):
        'destinations': destinations,
        'persons_choices': persons_choices
     }
+    return render(request, 'tours/index.html', context) """
+
+def index(request, category_slug=None):
+    category = None
+    categories = Category.objects.all()
+    programs = Program.objects.order_by('arrival_date').filter(available_front_page=True)[:3]
+    if category_slug:
+        category = get_object_or_404(Category, slug=category_slug)
+        programs = programs.filter(category=category) 
+    destinations = Destination.objects.all()
+   
+    context = {
+       'category': category,
+       'categories':categories,
+       'programs': programs,
+       'destinations': destinations
+       }
     return render(request, 'tours/index.html', context)
 
 def about(request):
