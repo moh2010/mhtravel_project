@@ -83,7 +83,19 @@
           <!-- <span class="moveit">Descount</span> -->
           <img src="{{ program.image_main.url }}" class="card-img-top" alt="...">
           <div class="card-body">
-            <p class="card-text">{{ program.description }}</p>
+            <div class="place_review">
+              <a href="#"><i class="fas fa-star"></i></a>
+              <a href="#"><i class="fas fa-star"></i></a>
+              <a href="#"><i class="fas fa-star"></i></a>
+              <a href="#"><i class="fas fa-star"></i></a>
+              <a href="#"><i class="fas fa-star"></i></a>
+            </div>  
+            <p class="card-text">Arrival Date :{{ program.arrival_date }}</p>
+            <p class="card-text">Departure Date {{ program.departure_date }}</p>
+            <p class="card-text">Hotel : {{ program.hotel_name }}</p>
+            <p class="card-text">District : {{ program.district }}</p>
+            <p class="card-text">City : {{ program.city }}</p>
+            <p class="card-text">Destination : {{ program.destination.title }}</p>
           </div>
           <div class="card-footer">
             <a href="{{ program.get_absolute_url }}" class="btn btn-primary">More Details</a>

@@ -51,6 +51,11 @@ body {
   } 
 }
 
+.place_review {
+  margin-top: -15px;
+  color: #fe5c24;
+}
+
 .portfolio-item {
   margin-bottom: 30px;
 }
