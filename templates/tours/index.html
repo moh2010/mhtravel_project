@@ -48,11 +48,13 @@
     <form method="" class="form-in">
       <div class="form-row rom">
         <div class="form-group col-xs-12 col-sm-3">
-          <select id="inputState" class="form-control" style="width: 100%;">
+          <select name="land" id="inputState" class="form-control" style="width: 100%;">
             <option selected>Choose Destination</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            {% for dest in destinations %}
+              {% if destination.slug == dest.slug %}{% endif %}
+                <option value="{{ dest.title }}" href="{{ dest.get_absolute_url }}">{{ dest.title }}</option>
+            {% endfor %}
+            
           </select>
         </div>
         <div class="form-group col-xs-12 col-sm-3">

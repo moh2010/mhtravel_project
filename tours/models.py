@@ -14,7 +14,7 @@ class Category(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('tours:index_list', args=[self.slug])
+        return reverse('tours:category_list', args=[self.slug])
 
 class Destination(models.Model):
     title = models.CharField(max_length=200,db_index=True)

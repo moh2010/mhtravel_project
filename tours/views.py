@@ -24,27 +24,28 @@ from .choices import persons_choices
     return render(request, 'tours/index.html', context) """
 
 def index(request, category_slug=None):
-    category = None
-    categories = Category.objects.all()
     programs = Program.objects.order_by('arrival_date').filter(available_front_page=True)[:3]
-    if category_slug:
-        category = get_object_or_404(Category, slug=category_slug)
-        programs = programs.filter(category=category) 
     destinations = Destination.objects.all()
-   
+    categories = Category.objects.all()   
     context = {
-       'category': category,
-       'categories':categories,
        'programs': programs,
-       'destinations': destinations
+       'destinations':destinations,
+       'categories':categories
        }
     return render(request, 'tours/index.html', context)
 
 def about(request):
     return render(request, 'tours/about.html')
 
-def destination(request):
-    return render (request, 'tours/destination.html')
+def per_category(request, category_slug=None):
+    if category_slug:
+        category = get_object_or_404(Category, slug=category_slug)
+        programq = Program.objects.filter(category=category)
+        context = {
+        'category': category ,
+        'programq': programq
+        }    
+    return render (request, 'tours/hotels.html', context)
 
 def per_destination(request, des_slug=None):
     if des_slug:
@@ -64,6 +65,7 @@ def package(request):
        'destinations': destinations
     }
     return render (request, 'tours/packages.html', context)
+
 
 def tour_detail(request, tour_id, slug):
     tour = get_object_or_404(Program, id=tour_id, slug=slug, available_programs_page=True)
@@ -94,7 +96,6 @@ def search(request):
        
     }
     return render(request, 'tours/index.html', context)
-
 
 
 def contact(request):

@@ -9,14 +9,14 @@
 
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-4 mb-3">Destination:
-      <small>{{ destination.title }}</small>
+      <small>{{ category.title }}</small>
     </h1>
 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="{% url 'tours:index' %}">Home</a>
       </li>
-      <li class="breadcrumb-item active">{{ destination.title }}</li>
+      <li class="breadcrumb-item active">{{ category.title }}</li>
     </ol>
 
     <!-- Image Header -->
@@ -24,8 +24,8 @@
 
     <!-- Destination Section -->
     <div class="row">
-      {% if destination %} 
-        {% for t in program %}
+      {% if category %} 
+        {% for t in programq %}
           <div class="col-lg-4 mb-4">
             <div class="card h-100">
               <h4 class="card-header">{{ t.title }}</h4>
@@ -58,4 +58,3 @@
  
   <!-- /.container -->
 {% endblock %}
-

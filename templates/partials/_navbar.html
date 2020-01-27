@@ -17,9 +17,10 @@
               Destinations
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-              <a class="dropdown-item" href="portfolio-1-col.html">Turkey</a>
-              <a class="dropdown-item" href="portfolio-2-col.html">Marocco</a>
-              <a class="dropdown-item" href="portfolio-3-col.html">Malisa</a>
+              {% for d in destinations %} 
+                {% if destination.slug == d.slug %}{% endif %}
+                  <a class="dropdown-item" href="{{ d.get_absolute_url }}">{{ d.title }}</a>
+              {% endfor %}
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -27,13 +28,14 @@
               Categories
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              <a class="dropdown-item" href="blog-home-1.html">Tickets</a>
-              <a class="dropdown-item" href="blog-home-2.html">Round Trip</a>
-              <a class="dropdown-item" href="blog-post.html">Hotels</a>
+              {% for c in categories %} 
+                {% if category.slug == c.slug %}{% endif %}
+                  <a class="dropdown-item" href="{{ c.get_absolute_url }}">{{ c.title}}</a>
+              {% endfor %}
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'tours:about' %}">RoundTrip</a>
+            <a class="nav-link" href="{% url 'tours:package' %}">RoundTrip</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'tours:contact' %}">Flight Ticktes</a>
