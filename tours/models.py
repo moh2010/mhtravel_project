@@ -43,7 +43,7 @@ class City(models.Model):
     def __str__(self):
         return self.title   
 
-class Ticket(models.Model):
+class Airline(models.Model):
     airline_name = models.CharField(max_length=200,db_index=True)
     airline_code =models.CharField(max_length=10)
     description = models.TextField()
@@ -51,14 +51,31 @@ class Ticket(models.Model):
     
     class Meta:
         ordering = ('airline_code',)
-        verbose_name = 'Ticket'
-        verbose_name_plural = 'Tickets'
+        verbose_name = 'airline'
+        verbose_name_plural = 'airlines'
 
     def __str__(self):
         return self.airline_name
 
     def get_absolute_url(self):
-        return reverse('tours:ticket_list', args=[self.slug])        
+        return reverse('tours:airline_list', args=[self.slug])     
+
+class Flight(models.Model):
+    airline = models.ForeignKey(Airline, on_delete=models.CASCADE)
+    arrival_date = models.DateField()
+    departure_date = models.DateField()
+    slug = models.SlugField(max_length=200,unique=True)
+    
+    class Meta:
+        ordering = ('arrival_date',)
+        verbose_name = 'flight'
+        verbose_name_plural = 'flights'
+
+    def __str__(self):
+        return self.airline
+
+    def get_absolute_url(self):
+        return reverse('tours:flight_list', args=[self.slug])               
 
 class Hotel(models.Model):
     title = models.CharField(max_length=200,db_index=True)
@@ -66,8 +83,8 @@ class Hotel(models.Model):
     
     class Meta:
         ordering = ('title',)
-        verbose_name = 'Hotel'
-        verbose_name_plural = 'Hotels'
+        verbose_name = 'hotel'
+        verbose_name_plural = 'hotels'
 
     def __str__(self):
         return self.title
@@ -83,16 +100,16 @@ class Program(models.Model):
     category = models.ForeignKey(Category, related_name='cat_programs', on_delete=models.CASCADE)
     destination = models.ForeignKey(Destination, related_name='des_programs', on_delete=models.CASCADE)
     city = models.ForeignKey(City, related_name='cit_programs', on_delete=models.CASCADE)
+    airline = models.ForeignKey(Airline, related_name='air_programs', on_delete=models.CASCADE)
+    hotel_name = models.ForeignKey(Hotel, related_name='htl_programs', on_delete=models.CASCADE)
+    flight = models.ForeignKey(Flight, related_name='htl_programs', on_delete=models.CASCADE)
     title = models.CharField(max_length=300, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True)
     description = models.TextField()
-    arrival_date = models.DateField()
-    departure_date = models.DateField()
     price_adt = models.DecimalField(max_digits=12, decimal_places=2)
     price_chd_one = models.DecimalField(max_digits=10, decimal_places=2)
     price_chd_two = models.DecimalField(max_digits=10, decimal_places=2)
     price_inf = models.DecimalField(max_digits=10, decimal_places=2)
-    hotel_name = models.ForeignKey(Hotel, related_name='htl_programs', on_delete=models.CASCADE)
     district = models.CharField(max_length=200)
     stars = models.IntegerField()
     image_main= models.ImageField(upload_to=program_directory_path, blank=True)
@@ -102,7 +119,6 @@ class Program(models.Model):
     image_4 = models.ImageField(upload_to=program_directory_path, blank=True)
     image_5 = models.ImageField(upload_to=program_directory_path, blank=True)
     image_6 = models.ImageField(upload_to=program_directory_path, blank=True)
-    flight = models.ForeignKey(Ticket, related_name='tkt_programs', on_delete=models.CASCADE)
     flight_detail = models.TextField()
     available_front_page = models.BooleanField(default=True)
     available_programs_page = models.BooleanField(default=True)
@@ -111,14 +127,14 @@ class Program(models.Model):
     
     
     def __str__(self):
-        return self.title +" "+self.hotel_name+" "+str(self.arrival_date) 
+        return self.title +" "+self.hotel_name+" "+str(self.flight.arrival_date) 
 
     def get_absolute_url(self):
             return reverse('tours:tour_detail', args=[self.id, self.slug])
                             
 
     class Meta:
-        ordering = ('arrival_date',)
+        ordering = ('flight',)
         verbose_name = 'program'
         verbose_name_plural = 'programs' 
     
