@@ -24,7 +24,7 @@ from .choices import persons_choices
     return render(request, 'tours/index.html', context) """
 
 def index(request, category_slug=None):
-    programs = Program.objects.order_by('arrival_date').filter(available_front_page=True)[:3]
+    programs = Program.objects.order_by('flight__arrival_date').filter(available_front_page=True)[:3]
     destinations = Destination.objects.all()
     categories = Category.objects.all()   
     context = {

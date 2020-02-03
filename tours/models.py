@@ -32,6 +32,7 @@ class Destination(models.Model):
         return reverse('tours:program_list_by_destination', args=[self.slug])
 
 class City(models.Model):
+    destination = models.ForeignKey(Destination, related_name='des_city', on_delete=models.CASCADE)
     title = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, unique=True)
 
@@ -61,7 +62,7 @@ class Airline(models.Model):
         return reverse('tours:airline_list', args=[self.slug])     
 
 class Flight(models.Model):
-    airline = models.ForeignKey(Airline, on_delete=models.CASCADE)
+    airline = models.ForeignKey(Airline, related_name='air_flight', on_delete=models.CASCADE)
     arrival_date = models.DateField()
     departure_date = models.DateField()
     slug = models.SlugField(max_length=200,unique=True)
@@ -78,7 +79,10 @@ class Flight(models.Model):
         return reverse('tours:flight_list', args=[self.slug])               
 
 class Hotel(models.Model):
+    destination = models.ForeignKey(Destination, related_name='des_hotel', on_delete=models.CASCADE)
+    city = models.ForeignKey(City, related_name='cit_hotel', on_delete=models.CASCADE)
     title = models.CharField(max_length=200,db_index=True)
+    stars = models.IntegerField()
     slug = models.SlugField(max_length=200,unique=True)
     
     class Meta:
@@ -102,7 +106,7 @@ class Program(models.Model):
     city = models.ForeignKey(City, related_name='cit_programs', on_delete=models.CASCADE)
     airline = models.ForeignKey(Airline, related_name='air_programs', on_delete=models.CASCADE)
     hotel_name = models.ForeignKey(Hotel, related_name='htl_programs', on_delete=models.CASCADE)
-    flight = models.ForeignKey(Flight, related_name='htl_programs', on_delete=models.CASCADE)
+    flight = models.ForeignKey(Flight, related_name='fly_programs', on_delete=models.CASCADE)
     title = models.CharField(max_length=300, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True)
     description = models.TextField()
@@ -111,7 +115,6 @@ class Program(models.Model):
     price_chd_two = models.DecimalField(max_digits=10, decimal_places=2)
     price_inf = models.DecimalField(max_digits=10, decimal_places=2)
     district = models.CharField(max_length=200)
-    stars = models.IntegerField()
     image_main= models.ImageField(upload_to=program_directory_path, blank=True)
     image_1 = models.ImageField(upload_to=program_directory_path, blank=True)
     image_2 = models.ImageField(upload_to=program_directory_path, blank=True)
@@ -119,7 +122,6 @@ class Program(models.Model):
     image_4 = models.ImageField(upload_to=program_directory_path, blank=True)
     image_5 = models.ImageField(upload_to=program_directory_path, blank=True)
     image_6 = models.ImageField(upload_to=program_directory_path, blank=True)
-    flight_detail = models.TextField()
     available_front_page = models.BooleanField(default=True)
     available_programs_page = models.BooleanField(default=True)
     available_lastminut_page = models.BooleanField(default=True)

@@ -92,11 +92,11 @@
               <a href="#"><i class="fas fa-star"></i></a>
               <a href="#"><i class="fas fa-star"></i></a>
             </div>  
-            <p class="card-text">Arrival Date :{{ program.arrival_date }}</p>
-            <p class="card-text">Departure Date {{ program.departure_date }}</p>
-            <p class="card-text">Hotel : {{ program.hotel_name }}</p>
+            <p class="card-text">Arrival Date :{{ fly_programs.arrival_date }}</p>
+            <p class="card-text">Departure Date {{ fly_programs.departure_date }}</p>
+            <p class="card-text">Hotel : {{ program.hotel.title }}</p>
             <p class="card-text">District : {{ program.district }}</p>
-            <p class="card-text">City : {{ program.city }}</p>
+            <p class="card-text">City : {{ program.city.title }}</p>
             <p class="card-text">Destination : {{ program.destination.title }}</p>
           </div>
           <div class="card-footer">
