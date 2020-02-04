@@ -73,7 +73,7 @@ class Flight(models.Model):
         verbose_name_plural = 'flights'
 
     def __str__(self):
-        return self.airline
+        return self.slug
 
     def get_absolute_url(self):
         return reverse('tours:flight_list', args=[self.slug])               
@@ -129,7 +129,8 @@ class Program(models.Model):
     
     
     def __str__(self):
-        return self.title +" "+self.hotel_name+" "+str(self.flight.arrival_date) 
+        return self.hotel_name.title 
+        "+ self.title +" "+str(self.hotel_name.title)+" "+str(self.flight.arrival_date) " 
 
     def get_absolute_url(self):
             return reverse('tours:tour_detail', args=[self.id, self.slug])
