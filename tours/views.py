@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Program, Category, Destination, City
+from .models import Program, Category, Destination, City, Flight
 from django.core.paginator import EmptyPage, Paginator, PageNotAnInteger
 from .choices import persons_choices
 
@@ -31,7 +31,7 @@ def index(request, category_slug=None):
        'programs': programs,
        'destinations':destinations,
        'categories':categories
-       }
+    }
     return render(request, 'tours/index.html', context)
 
 def about(request):

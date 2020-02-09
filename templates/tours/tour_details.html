@@ -27,9 +27,9 @@
         <p>{{ tour.description }}</p>
         <h3 class="my-3">Trip Details</h3>
         <ul>
-          <li>AirLine: {{ tour.flight }}</li>
-          <li>Arrival Date: {{ tour.arrival_date }}</li>
-          <li>Departure Date: {{ tour.departure_date }}</li>
+          <li>AirLine: {{ tour.flight.airline }}</li>
+          <li>Arrival Date: {{ tour.flight.arrival_date }}</li>
+          <li>Departure Date: {{ tour.flight.departure_date }}</li>
           <li>Adult Rate: LE {{ tour.price_adt }}</li>
           <li>First Child Rate: LE {{ tour.price_chd_one }}</li>
           <li>Second Child Rate: LE {{ tour.price_chd_two }}</li>
