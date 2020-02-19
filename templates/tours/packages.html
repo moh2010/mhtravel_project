@@ -30,9 +30,9 @@
             </div>
             <div class="col-md-5 mb-3">
               <h3>{{ progr.title}}</h3>
-              <p>AirLine: {{ progr.flight }}</p>
-              <p>Arrival Date: {{ progr.arrival_date }}</p>
-              <p>Departure Date: {{ progr.departure_date }}</p>
+              <p>AirLine: {{ progr.airline.airline_name }}</p>
+              <p>Arrival Date: {{ progr.flight.arrival_date }}</p>
+              <p>Departure Date: {{ progr.flight.departure_date }}</p>
               <p>Adult Rate: LE {{ progr.price_adt }}</p>
               <a class="btn btn-primary" href="{{ progr.get_absolute_url }}">More Details
                 <span class="glyphicon glyphicon-chevron-right"></span>

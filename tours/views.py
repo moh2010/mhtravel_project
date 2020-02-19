@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Program, Category, Destination, City, Flight
+from .models import Program, Category, Destination, City, Flight, Hotel
 from django.core.paginator import EmptyPage, Paginator, PageNotAnInteger
 from .choices import persons_choices
 
@@ -26,11 +26,13 @@ from .choices import persons_choices
 def index(request, category_slug=None):
     programs = Program.objects.order_by('flight__arrival_date').filter(available_front_page=True)[:3]
     destinations = Destination.objects.all()
-    categories = Category.objects.all()   
+    categories = Category.objects.all()
+    hotels = Hotel.objects.all()   
     context = {
        'programs': programs,
        'destinations':destinations,
-       'categories':categories
+       'categories':categories,
+       'hotels':hotels
     }
     return render(request, 'tours/index.html', context)
 
@@ -58,7 +60,7 @@ def per_destination(request, des_slug=None):
     return render (request, 'tours/per_destination.html', context)
 
 def package(request):
-    programz = Program.objects.order_by('arrival_date').filter(available_programs_page=True)
+    programz = Program.objects.order_by('flight__arrival_date').filter(available_programs_page=True)
     destinations = Destination.objects.all()
     context = {
        'programz': programz ,
