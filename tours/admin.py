@@ -3,11 +3,16 @@ from .models import Program, Category, Destination, City, Hotel, Airline, Flight
 
 
 class ProgramAdmin(admin.ModelAdmin):
-    list_display = ('id','title','price_adt','category','program_flight','available_front_page','available_programs_page','available_lastminut_page','available_tours_page')
-    list_display_links = ('id','title','price_adt')
+    list_display = ('id','title','price_adt','category','flight_date','available_front_page','available_programs_page','available_lastminut_page','available_tours_page')
+    model = Program
+    list_display_links = ('id','title','price_adt','flight_date')
     list_filter = ('flight',)
     list_editable = ('available_front_page','available_programs_page','available_lastminut_page','available_tours_page')
     search_fields = ('title','description','destination','city','district',)
+
+    def flight_date(self, obj):
+        return obj.flight.arrival_date
+
 
 admin.site.register(Category)
 admin.site.register(Destination)

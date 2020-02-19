@@ -132,9 +132,6 @@ class Program(models.Model):
         return self.hotel_name.title 
         "+ self.title +" "+str(self.hotel_name.title)+" "+str(self.flight.arrival_date) " 
 
-    def program_flight(object):
-        return object.program.flight
-    
     def get_absolute_url(self):
             return reverse('tours:tour_detail', args=[self.id, self.slug])
                             
