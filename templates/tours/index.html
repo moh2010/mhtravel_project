@@ -86,11 +86,27 @@
           <img src="{{ program.image_main.url }}" class="card-img-top" alt="...">
           <div class="card-body">
             <div class="place_review">
-              <a href="#"><i class="fas fa-star"></i></a>
-              <a href="#"><i class="fas fa-star"></i></a>
-              <a href="#"><i class="fas fa-star"></i></a>
-              <a href="#"><i class="fas fa-star"></i></a>
-              <a href="#"><i class="fas fa-star"></i></a>
+              {% if program.hotel_name.stars == 5 %}
+                <a href="#"><i class="fas fa-star"></i></a>
+                <a href="#"><i class="fas fa-star"></i></a>
+                <a href="#"><i class="fas fa-star"></i></a>
+                <a href="#"><i class="fas fa-star"></i></a>
+                <a href="#"><i class="fas fa-star"></i></a>
+              {% elif program.hotel_name.stars == 4 %}    
+                <a href="#"><i class="fas fa-star"></i></a>
+                <a href="#"><i class="fas fa-star"></i></a>
+                <a href="#"><i class="fas fa-star"></i></a>
+                <a href="#"><i class="fas fa-star"></i></a>
+              {% elif program.hotel_name.stars == 3 %} 
+                <a href="#"><i class="fas fa-star"></i></a>
+                <a href="#"><i class="fas fa-star"></i></a>
+                <a href="#"><i class="fas fa-star"></i></a>     
+              {% elif program.hotel_name.stars == 2 %}
+                <a href="#"><i class="fas fa-star"></i></a>
+                <a href="#"><i class="fas fa-star"></i></a>
+              {% elif program.hotel_name.stars == 1 %}
+                <a href="#"><i class="fas fa-star"></i></a>
+              {% endif %}
             </div>  
             <p class="card-text">Arrival Date :{{ program.flight.arrival_date }}</p>
             <p class="card-text">Departure Date {{ program.flight.departure_date }}</p>
@@ -112,52 +128,19 @@
     <h2>Top Hotels</h2>
 
     <div class="row">
-      {% for h in hotels %}
+      {% for hotel in hotels %}
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <a href="#"><img class="card-img-top" src="{{ hotel.image_main.url }}" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#">Project One</a>
+                <a href="#">{{ hotel.title }}</a>
               </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
+              <p class="card-text">{{ hotel.description }}</p>
             </div>
           </div>
         </div>
       {% endfor %}
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="#">Project Four</a>
-            </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="#">Project Five</a>
-            </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="#">Project Six</a>
-            </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
-          </div>
-        </div>
-      </div>
     </div>
     <!-- /.row -->
 
@@ -165,99 +148,21 @@
     <h2>Top Destination</h2>
 
     <div class="row">
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="#">Project One</a>
-            </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
+      {% for destination in destinations %}
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="{{ destination.image_main.url }}" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">{{ destination.title}}</a>
+              </h4>
+              <p class="card-text">{{ destination.description }}</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="#">Project Two</a>
-            </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="#">Project Three</a>
-            </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="#">Project Four</a>
-            </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="#">Project Five</a>
-            </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="#">Project Six</a>
-            </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
     <!-- /.row -->
-
-    <!-- Features Section -->
-
-    <div class="row">
-      <div class="col-lg-6">
-        <h2>Categories</h2>
-        <p>The Modern Business template by Start Bootstrap includes:</p>
-        <ul>
-          {% for c in categories %}
-            <li>
-              {% if category.slug == c.slug %}{% endif %}
-                <a href="{{ c.get_absolute_url }}">{{ c.title }}</a>
-            </li>
-          {% endfor %}
-        </ul>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum ducimus unde.</p>
-      </div>
-      <div class="col-lg-6">
-        <img class="img-fluid rounded" src="http://placehold.it/700x450" alt="">
-      </div>
-      
-    </div>
-    <!-- /.row -->
-
-    <hr>
 
     <!-- Call to Action Section -->
     <div class="row mb-4">

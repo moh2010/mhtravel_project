@@ -64,6 +64,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'tours.context_processors_navbar.navbar_index',
+                'tours.context_processors_footer.get_current_year_to_context',
             ],
         },
     },

@@ -25,14 +25,14 @@ from .choices import persons_choices
 
 def index(request, category_slug=None):
     programs = Program.objects.order_by('flight__arrival_date').filter(available_front_page=True)[:3]
-    destinations = Destination.objects.all()
+    destinations = Destination.objects.filter(available_front_page=True)[:3]
     categories = Category.objects.all()
-    hotels = Hotel.objects.all()   
+    hotels = Hotel.objects.filter(available_front_page=True)[:3]
     context = {
        'programs': programs,
        'destinations':destinations,
        'categories':categories,
-       'hotels':hotels
+       'hotels':hotels,
     }
     return render(request, 'tours/index.html', context)
 

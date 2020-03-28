@@ -17,7 +17,7 @@
               Destinations
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-              {% for d in destinations %} 
+              {% for d in navbar_destinations %} 
                 {% if destination.slug == d.slug %}{% endif %}
                   <a class="dropdown-item" href="{{ d.get_absolute_url }}">{{ d.title }}</a>
               {% endfor %}
@@ -28,14 +28,14 @@
               Categories
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              {% for c in categories %} 
+              {% for c in navbar_categories %} 
                 {% if category.slug == c.slug %}{% endif %}
                   <a class="dropdown-item" href="{{ c.get_absolute_url }}">{{ c.title}}</a>
               {% endfor %}
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'tours:package' %}">RoundTrip</a>
+            <a class="nav-link" href="{% url 'tours:package' %}">Packages</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'tours:contact' %}">Flight Ticktes</a>
