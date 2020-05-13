@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from smart_selects.db_fields import ChainedForeignKey
 
 def program_directory_path(instance, filename):
      
@@ -114,7 +115,16 @@ class Hotel(models.Model):
 class Program(models.Model):
     category = models.ForeignKey(Category, related_name='cat_programs', on_delete=models.CASCADE, null=True)
     destination = models.ForeignKey(Destination, related_name='des_programs', on_delete=models.CASCADE, null=True)
-    city = models.ForeignKey(City, related_name='cit_programs', on_delete=models.CASCADE, null=True)
+    city = ChainedForeignKey(
+                City, 
+                chained_field="destination",
+                chained_model_field="destination",
+                show_all=False,
+                auto_choose=True,
+                sort=True,
+                related_name='cit_programs', 
+                on_delete=models.CASCADE, 
+                null=True)
     airline = models.ForeignKey(Airline, related_name='air_programs', on_delete=models.CASCADE, null=True)
     hotel_name = models.ForeignKey(Hotel, related_name='htl_programs', on_delete=models.CASCADE, null=True)
     flight = models.ForeignKey(Flight, related_name='fly_programs', on_delete=models.CASCADE, null=True)
